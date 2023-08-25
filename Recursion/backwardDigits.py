@@ -17,7 +17,7 @@ def inverte(n, inversao=0):
         return inverte(n // 10, n % 10 + 10 * inversao)
 
 
-print("rai", backwardDigits(123))
+print( backwardDigits(123))
 
 print(inverte(123))
 """

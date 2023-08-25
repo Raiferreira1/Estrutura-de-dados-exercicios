@@ -15,9 +15,8 @@ def organization_by_k(vetor: list[int], k: int, index=0, counter=0):
             return organization_by_k(vetor, k, index, counter + 1)
 
 
-# print(organization_by_k([1, 0, 2, 9, 3, 8, 4, 7, 5, 6, 11, 22, 33, 44, 37], 5))
-# array = [11, 21, 8, 2]
-# print(organization_by_k(array,8))
+print(organization_by_k([1, 0, 2, 9, 3, 8, 4, 7, 5, 6, 11, 22, 33, 44, 37], 5))
+
 
 
 

@@ -1,6 +1,6 @@
 def binary_search(n, target, low=0, high=None):
     if high is None:
-    high = len(vetor)-1
+        high = len(n)-1
 
 
     if low > high:
