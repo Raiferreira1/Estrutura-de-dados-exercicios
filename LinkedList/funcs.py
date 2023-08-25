@@ -46,6 +46,7 @@ list.insertAtEnd(10)
 list.insertAtEnd(15)
 list.insertAtEnd(10)
 list.insertAtEnd(20)
+list.eleteAtPosition(0)
 
 print("Original list:")
 list.print()

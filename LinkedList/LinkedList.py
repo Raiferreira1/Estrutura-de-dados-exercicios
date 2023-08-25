@@ -59,7 +59,7 @@ class LinkedList(object):
     current.next = newNode
     self.length +=1
 
-  def deleteAtPosition(self,pos):
+  def d (self,pos):
     count = 0
     currentNode = self.head
     previousNode = self.head
