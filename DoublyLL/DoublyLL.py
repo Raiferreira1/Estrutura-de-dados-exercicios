@@ -56,9 +56,11 @@ class DoublyLL:
     def printList(self):
         current = self.head
         while current:
-            print(current.data, end=",")
+            print(current.data, end="")
+            if current.next:
+                print(", ", end="")
             current = current.next
-
+        print("")
 
 
         
@@ -84,41 +86,42 @@ class DoublyLL:
 
         else:
             self.head = None
-            self.length -= 1  
+        self.length -= 1  
     
 
-
-
-    
-def removeByBinarySearch(l, index):
-    if index < 0 or index >= l.length:
-        return None 
         
-    if index == 0:
-        l.deleteFromBeginning()
+    def deleteAtPosition(self, index):
+        if index < 0 or index >= self.length:
+            return None 
+        
+        if index == 0:
+            self.deleteFromBeginning()
 
-    elif index == -1:
-       l.deleteFromEnd()
-    
-    aux = l.length // 2
-    
-    if index <= aux:
-        cont = 0
-        current_node = l.head
-        while current_node and cont < index:
-            current_node = current_node.next
-            cont += 1
+        elif index == -1:
+            self.deleteFromEnd()
+        else:
 
-        current_node.prev.next = current_node.next
-        if current_node.next:
-            current_node.next.prev = current_node.prev
-    else:
-        cont = l.length - 1
-        current_node = l.tail
-        while current_node and cont > index:
-            current_node = current_node.prev
-            cont -= 1
+            aux = self.length // 2
 
-        current_node.prev.next = current_node.next
-        if current_node.next:
-            current_node.next.prev = current_node.prev
+            if index <= aux:
+                cont = 0
+                current_node = self.head
+                while current_node and cont < index:
+                    current_node = current_node.next
+                    cont += 1
+
+                current_node.prev.next = current_node.next
+                if current_node.next:
+                    current_node.next.prev = current_node.prev
+            else:
+                cont = self.length - 1
+                current_node = self.tail
+                while current_node and cont > index:
+                    current_node = current_node.prev
+                    cont -= 1
+
+                current_node.prev.next = current_node.next
+                if current_node.next:
+                    current_node.next.prev = current_node.prev
+            
+            self.length -= 1
