@@ -8,124 +8,106 @@ class LinkedList(object):
     self.head = None
 
 
-  def setHead(self, Node):
-    self.head = Node
-
-  def getHead(self):
-    return self.head
-  
   def insertAtBeginning(self, data):
-    newNode = Node()
-    newNode.data = data
+    new_node = Node(data)  
     if self.length == 0:
-      self.head = newNode
+        self.head = new_node
     else:
-      newNode.next = self.head
-      self.head = newNode
-    self.length += 1
+        new_node.next = self.head  
+        self.head = new_node  
+    self.length += 1  
+
 
   def insertAtGivenPosition(self, pos, data):
     if pos > self.length or pos < 0:
-      return None
+        return None
+
+    new_node = Node(data)  
+
+    if pos == 0:
+        new_node.next = self.head  
+        self.head = new_node  
     else:
-      if pos == 0:
-        self.insertAtBeginning(data)
-      else:
-        if pos == self.length:
-          self.insertAtEnd(data)
-        else:
-          newNode = Node()
-          newNode.data = data
-          count = 1
-          current = self.head
-          while count < pos-1:
-            count +=1
+        current = self.head
+        count = 0
+        while count < pos - 1:
             current = current.next
-          newNode.next = current.next
-          current.next = newNode
-          self.length +=1
+            count += 1
+        new_node.next = current.next  
+        current.next = new_node  
+
+    self.length += 1  
 
 
   def insertAtEnd(self, data):
-    newNode = Node()
-    newNode.data = data
-    if ( self.length == 0 ):
-      self.head = newNode
-      self.length +=1
-      return
-    current = self.head
-    while current.next != None:
-      current = current.next
-    current.next = newNode
-    self.length +=1
-
-  def deleteAtPosition(self,pos):
-    count = 0
-    currentNode = self.head
-    previousNode = self.head
-
-    if pos > self.length or pos <0:
-      return None
+    new_node = Node(data)  
+    
+    if self.length == 0:
+        self.head = new_node  
     else:
-      while currentNode.next!=None or count <pos:
-        count = count+1
-        if count == pos:
-          previousNode.next=currentNode.next
-          self.length-=1
-          return
-        else:
-          previousNode=currentNode
-          currentNode=currentNode.next
+        current = self.head
+        while current.next is not None:
+            current = current.next
+        current.next = new_node  
+    
+    self.length += 1  
 
+
+  def deleteAtPosition(self, pos):
+    if pos >= self.length or pos < 0:
+        return None
+
+    if pos == 0:
+        self.head = self.head.next
+        self.length -= 1
+        return
+
+    current = self.head
+    previous = None
+    count = 0
+
+    while count < pos:
+        previous = current
+        current = current.next
+        count += 1
+
+    previous.next = current.next
+    self.length -= 1
+
+
+  
 
   def deleteFromBeginning(self):
-    if self.length != 0:
-      self.head = self.head.next
-      self.length -=1
+      if self.length > 0:
+          self.head = self.head.next
+          self.length -= 1
 
   def deleteFromEnd(self):
-    if self.length != 0:
-      currentNode = self.getHead()
-      previousNode = self.getHead()
-      while currentNode.next != None:
-        previousNode = currentNode
-        currentNode = currentNode.next
-      previousNode.next = None
-      self.length -=1
-  
-  def print(self):
-    if self.length != 0:
-      pos = 0
-      current = self.head
-      while current != None:        
-        print("Node %d has value %s"%(pos, current.data))
-        pos +=1
-        if pos == self.length : return
+      if self.length > 0:
+          if self.length == 1:
+              self.head = None
+          else:
+              current = self.head
+              previous = None
+              while current.next is not None:
+                  previous = current
+                  current = current.next
+              previous.next = None
+          self.length -= 1
+
+  def printList(self):
+    current = self.head
+    pos = 0
+    while current and pos < self.length:
+        print("Node %d has value %s" % (pos, current.data))
         current = current.next
+        pos += 1
 
   def getNodeAtPosition(self, index):
-    if self.length != 0:
-      current = self.head
-      i = 0
-      while ( (current != None) and (i < index) ):
-        current = current.next
-        i += 1
-      return current
-    else:
-      return None
+    if 0 <= index < self.length:
+        current = self.head
+        for i in range(index):
+            current = current.next
+        return current
+    return None
 
-
-  def getPosition(self, node):
-    if node is None:
-        return -1
-
-    current = self.head
-    position = 0
-
-    while current is not None:
-        if current == node:
-            return position
-        position += 1
-        current = current.next
-
-    return -1
