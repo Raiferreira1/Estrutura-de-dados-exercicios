@@ -1,44 +1,51 @@
 from LinkedList import LinkedList
 
-def deleteAtValue(l, value):
-    current = l.head
-    previous = None
 
-    while current:  
+list = LinkedList()
+list.insertAtEnd(0)
+list.insertAtEnd(3)
+list.insertAtEnd(2)
+list.insertAtEnd(3)
+list.insertAtEnd(4)
 
-        if current.data == v:
-            if previous is None: 
-                l.head = current.next
-            else:
-                previous.next = current.next
+list.moveElementsToFront(3)
+print("Original list:")
+list.printList()
 
-            l.length -= 1
-        else:
-            previous = current
+list.insertInSortedOrder(2)
 
-        current = current.next
-
+print("New list:")
+list.printReverseLL(list.head)
 
 
+
+
+
+
+
+# def kkkk(l, n):
+        
+
+
+#         size = 0
+#         now = l.head
+#         while now:
+#             size += 1
+#             now = now.next
+
+#         if n < 0 or n > size:
+#             return None
+        
+#         position = l.length - n -1
+
+#         current = l.head
+
+#         while position > 0:
+#             current = current.next
+#             position-=1
+#         return current.data
 
   
 
 
 
-list = LinkedList()
-list.insertAtEnd(5)
-list.insertAtEnd(10)
-list.insertAtEnd(15)
-list.insertAtEnd(10)
-list.insertAtEnd(20)
-list.insertAtGivenPosition(5,55)
-# list.deleteAtPosition(0)
-
-print("Original list:")
-list.printList()
-
-v = 5
-
-
-print("New list:")
-list.printList()

@@ -111,3 +111,85 @@ class LinkedList(object):
         return current
     return None
 
+    
+  def insertInSortedOrder(self, data):
+        new_node = Node(data)
+
+        if self.length == 0 or self.head.data > data:
+            self.insertAtBeginning(data)
+            return
+
+        current = self.head
+        previous = None
+
+        while current is not None and current.data <= data:
+            previous = current
+            current = current.next
+
+     
+        previous.next = new_node
+        new_node.next = current
+        self.length += 1
+
+
+
+  def getNthElement(self, n):
+        if n < 0:
+            raise ValueError("O valor de n deve ser não negativo")
+
+        fast = slow = self.head
+        count = 0
+
+        while count < n and fast:
+            fast = fast.next
+            count += 1
+
+        if count < n or fast is None:
+            raise ValueError("O valor de n excede o tamanho da lista")
+
+        while fast.next is not None:
+            fast = fast.next
+            slow = slow.next
+
+        return slow.data
+    
+  def printReverseLL(self,head):
+     if head is None:
+        return
+     self.printReverseLL(head.next)
+     print(head.data)
+
+
+  def deleteAtValue(self, value):
+    current = self.head
+    previous = None
+
+    while current:  
+
+        if current.data == value:
+            if previous is None: 
+                self.head = current.next
+            else:
+                previous.next = current.next
+
+            self.length -= 1
+        else:
+            previous = current
+
+        current = current.next
+    
+  def moveElementsToFront(self,k):
+      if self.length <= 1:
+        return
+      current = self.head.next
+      previous = self.head
+
+      while current:
+          if current.data == k:
+              previous.next = current.next
+              current.next = self.head
+              self.head = current
+              current = previous.next
+          else:
+                previous = current
+                current = current.next
