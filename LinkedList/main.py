@@ -1,21 +1,49 @@
 from LinkedList import LinkedList
 
 
-list = LinkedList()
-list.insertAtEnd(0)
-list.insertAtEnd(3)
-list.insertAtEnd(2)
-list.insertAtEnd(3)
-list.insertAtEnd(4)
 
-list.moveElementsToFront(3)
+
+def removerPares(lista):
+    if lista.length == 0:
+        return
+    atual = anterior = lista.head
+    while atual:
+        if atual.data % 2 == 0:
+            if atual == lista.head:
+                lista.head = atual.next
+                atual = anterior = lista.head
+            anterior.next = atual.next 
+        else:
+            anterior = atual
+        atual = atual.next
+    return lista
+
+list = LinkedList()
+list.insertAtEnd(2)
+list.insertAtEnd(1)
+# list.insertAtEnd(3)
+# list.insertAtEnd(3)
+# list.insertAtEnd(2)
+# list.insertAtEnd(1)
+
+# list.moveElementsToFront(3)
 print("Original list:")
+print()
+
 list.printList()
 
-list.insertInSortedOrder(2)
+
+# print(list.reverse_linked_list())
+removerPares(list)
+print()
+
 
 print("New list:")
-list.printReverseLL(list.head)
+list.printList()
+
+
+# print("New list:")
+# list.printReverseLL(list.head)
 
 
 

@@ -193,3 +193,47 @@ class LinkedList(object):
           else:
                 previous = current
                 current = current.next
+    
+
+
+
+  def reverse_linked_list(self, head):
+        prev = None
+        current = head   
+        while current:                       
+            next_node = current.next                  
+            current.next = prev                             
+            prev = current                                     
+            current = next_node                               
+
+        return prev                                           
+
+
+
+
+
+  def is_palindrome(self):
+        if self.length <= 1:
+            return True  
+
+        middle = self.length // 2       
+
+        current = self.head
+        
+        for _ in range(middle):
+            current = current.next        
+
+        if self.length % 2 == 0:
+            second_half = self.reverse_linked_list(current)
+        else:
+             second_half = self.reverse_linked_list(current.next)
+
+        first_half = self.head
+        while second_half:
+            if first_half.data != second_half.data:
+                return False  
+            second_half = second_half.next
+            first_half =  first_half.next
+        
+
+        return True 
